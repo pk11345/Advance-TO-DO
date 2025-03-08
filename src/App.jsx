@@ -36,7 +36,7 @@ const App = () => {
         )}
        
           {!isLoggedIn ? (
-            <div className="flex justify-center items-center gap-2 mt-10">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-2 mt-10">
               <Signup setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
               <h1 className="text-xl font-bold">Join to track your task</h1>
               <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
