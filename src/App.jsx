@@ -7,11 +7,14 @@ import Signup from "./auth/Signup";
 import Login from "./auth/Login";
 import AddTask from "./components/AddTask";
 import Completed from "./components/Completed";
+import RightSideBar from "./components/RightSIdeBar";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState("");
   const [isLeftOpen, setIsLeftOpen] = useState(false); // Sidebar state
+  const [selectedTask, setSelectedTask] = useState(null); // New state for selected task
+  const [isRightOpen, setIsRightOpen] = useState(false); 
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser");
@@ -44,11 +47,13 @@ const App = () => {
           ) : (
             <>
             <AddTask/>
-            <Task user={user} />
+            <Task user={user} setSelectedTask={setSelectedTask} setIsRightOpen={setIsRightOpen}/>
              <Completed/>
             </> 
           )}
-       
+       {isRightOpen && selectedTask && (
+        <RightSideBar task={selectedTask} setIsRightOpen={setIsRightOpen} />
+      )}
       
     </>
   );

@@ -1,65 +1,68 @@
-import React from 'react'
-import { BiTask } from "react-icons/bi";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa";
-import { CiMap } from "react-icons/ci";
-import { MdAssignmentInd } from "react-icons/md";
-import { IoMdAdd } from "react-icons/io";
-import { IoMdInformationCircle } from "react-icons/io";
-import { FcPieChart } from "react-icons/fc";
+import React, { useState, useEffect } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { FaRegBell, FaRegCalendarAlt } from "react-icons/fa";
 
-const RightSideBar = () => {
+const RightSideBar = ({ task, setIsRightOpen }) => {
+  const [notes, setNotes] = useState("");
+
+  // Load saved notes when task changes
+  useEffect(() => {
+    const savedNotes = localStorage.getItem(`task_notes_${task.id}`);
+    setNotes(savedNotes || ""); // Load saved notes or set empty
+  }, [task]);
+
+  const handleSaveNotes = () => {
+    localStorage.setItem(`task_notes_${task.id}`, notes);
+  };
+
+  const handleDeleteNotes = () => {
+    localStorage.removeItem(`task_notes_${task.id}`);
+    setNotes(""); // Clear the note input
+  };
+
   return (
-   <>
-   <aside className=' w-1/5  bg-gray-200  pt-4 flex flex-col items-center gap-4 pb-4 absolute right-0'>
-    <div className="avatar flex flex-col items-center gap-3">
-        <img className='h-[100px] rounded-[50%]'
-        src="/passport size photo.jpg" alt="" />
-        <h1>Hi Pankaj</h1>
-    </div>
-    <ul className='bg-white pt-4 pb-4 w-[80%] pl-2 space-y-4'>
-        <li className='flex gap-3 items-center hover:bg-gray-200 cursor-pointer'>
-            <BiTask/>
-            <h1>All Task</h1>
-            </li>
+    <aside className="fixed right-0 top-0 md:w-1/4 w-1/2 h-full bg-gray-200 p-5 shadow-lg flex flex-col gap-4">
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl text-red-500 font-bold">Task Details</h2>
+        <button onClick={() => setIsRightOpen(false)}>
+          <AiOutlineClose className="text-2xl text-red-500 cursor-pointer" />
+        </button>
+      </div>
 
-            <li className='flex gap-3 items-center hover:bg-gray-200 cursor-pointer '>
-            <FaRegCalendarAlt />
-            <h1>Today</h1>
-            </li>
+      <h3 className="text-lg  font-semibold">{task.task}</h3>
 
-            <li className='flex gap-3 items-center hover:bg-gray-200 cursor-pointer '>
-            <FaRegStar />
-            <h1>Important</h1>
-            </li>
-
-            <li className='flex gap-3 items-center hover:bg-gray-200 cursor-pointer '>
-            <CiMap />
-            <h1>Planned</h1>
-            </li>
-
-            <li className='flex gap-3 items-center hover:bg-gray-200 cursor-pointer'>
-            <MdAssignmentInd />
-            <h1>Assigned To Me</h1>
-            </li>
-    </ul>
-
-    <div className="addlist flex gap-3 items-center bg-white pt-4 pb-4 w-[80%] pl-2">
-    <IoMdAdd />
-        <h1>Add List</h1>
-    </div>
-
-    <div className="TodayTask flex flex-col gap-3 items-center bg-white pt-4 pb-4 w-[80%] pl-2 pr-2">
-       
-        <div className='flex justify-between gap-20'>
-        <h1 className='flex flex-col'>Today Tasks <span>11</span></h1>
-        <IoMdInformationCircle />
+      {task.dueDate && (
+        <div className="flex items-center gap-2 text-gray-600">
+          <FaRegCalendarAlt />
+          <span>Due Date: {task.dueDate}</span>
         </div>
-        <FcPieChart  className='text-[150px]'/>
-    </div>
-   </aside>
-   </>
-  )
-}
+      )}
 
-export default RightSideBar
+      {task.reminder && (
+        <div className="flex items-center gap-2 text-red-500">
+          <FaRegBell />
+          <span>Reminder Set</span>
+        </div>
+      )}
+
+      {/* Notes Section */}
+      <textarea
+        className="border p-2 rounded-md w-full h-32"
+        placeholder="Add notes..."
+        value={notes}
+        onChange={(e) => setNotes(e.target.value)}
+      />
+
+      <div className="flex gap-4">
+        <button className="bg-blue-500 text-white p-2 rounded w-1/2" onClick={handleSaveNotes}>
+          Save Notes
+        </button>
+        <button className="bg-red-500 text-white p-2 rounded w-1/2" onClick={handleDeleteNotes}>
+          Delete Notes
+        </button>
+      </div>
+    </aside>
+  );
+};
+
+export default RightSideBar;
