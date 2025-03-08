@@ -1,12 +1,54 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 📝 Task Management App
 
-Currently, two official plugins are available:
+## 📌 Overview
+This is a **Task Management Web App** that allows users to **add, edit, delete, and track tasks** with features like:
+- **Task Due Date**
+- **Task Reminder**
+- **Task Completion**
+- **Starred (Important) Tasks**
+- **Notes for Each Task**
+- **Persistent Storage (LocalStorage)**
+- **Sidebar Navigation**
+- **Dark Mode Toggle**  - not implemented
+- **User Authentication (Signup, Login, Logout)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
+### ✅ **Task Management**
+- Add, edit, delete tasks with **due dates** and **reminders**.
+- **Mark tasks as completed** with a checkbox.
+- **Star tasks** to categorize them as important.
+- **View Today’s, Upcoming, and All Tasks** in the sidebar.
+- **Open a Right Sidebar** when clicking a task to view/edit details.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### ✅ **Right Sidebar for Task Details**
+- Displays **task name, due date, and reminder**.
+- Allows adding and **saving task notes**.
+- Provides a **delete button** to remove notes.
+
+### ✅ **User Authentication**
+- **Signup & Login** system with validation.
+- User **remains logged in** until they click **Logout**.
+- **Each user’s tasks and data are stored separately** in LocalStorage.
+
+
+
+### ✅ **Persistent Data**
+- All tasks, authentication, and settings are stored in **LocalStorage**.
+- Tasks remain saved even after refreshing the page.
+
+---
+
+
+
+## 🔧 Tech Stack
+- **Frontend:** React.js, Tailwind CSS
+- **State Management:** Redux
+- **Icons:** React Icons
+- **Storage:** LocalStorage
+
+
+
