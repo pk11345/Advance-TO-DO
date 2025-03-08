@@ -9,6 +9,7 @@ import AddTask from "./components/AddTask";
 import Completed from "./components/Completed";
 import RightSideBar from "./components/RightSIdeBar";
 
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState("");
