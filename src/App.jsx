@@ -7,7 +7,7 @@ import Signup from "./auth/Signup";
 import Login from "./auth/Login";
 import AddTask from "./components/AddTask";
 import Completed from "./components/Completed";
-import RightSideBar from "./components/RightSIdeBar";
+import RightSIdeBar from "./components/RightSIdeBar"
 
 
 
@@ -56,7 +56,8 @@ const App = () => {
             </> 
           )}
        {isRightOpen && selectedTask && (
-        <RightSideBar task={selectedTask} setIsRightOpen={setIsRightOpen} />
+        <RightSIdeBar task={selectedTask} setIsRightOpen={setIsRightOpen} />
+        
       )}
       
     </>

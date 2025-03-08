@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaRegBell, FaRegCalendarAlt } from "react-icons/fa";
 
-const RightSideBar = ({ task, setIsRightOpen }) => {
+const RightSIdeBar = ({ task, setIsRightOpen }) => {
   const [notes, setNotes] = useState("");
 
   // Load saved notes when task changes
@@ -65,4 +65,4 @@ const RightSideBar = ({ task, setIsRightOpen }) => {
   );
 };
 
-export default RightSideBar;
+export default RightSIdeBar;
